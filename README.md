@@ -1,8 +1,8 @@
 # Self-Learning RLHF
 
-Official implementation of the paper: "Self Learning RLHF". Our implementation is based on the official codebase of [MRN](https://github.com/RyanLiu112/MRN), [B-Pref](https://github.com/rll-research/BPref) and [SURF](https://github.com/alinlab/SURF).
+Official implementation of the paper: "Self-Learning Enhanced RLHF: Integrating Task Objectives for Improved Performance in Different Tasks". Our implementation is based on the official codebase of [MRN](https://github.com/RyanLiu112/MRN), [B-Pref](https://github.com/rll-research/BPref) and [SURF](https://github.com/alinlab/SURF).
 
-
+This is only for the Meta-world. There is different SL-RLHF Framework for DMControl. However, it is still recommended to completely install the conda environment of SlRlhf, because this environment is common to both DMControl and Meta world. If you have any problems with installation, you can first check the install_problem.md file
 
 ## How to install
 
@@ -52,7 +52,7 @@ python train_MRN.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_lr=
 #### MRN_self
 
 ```bash
-python train_MRN_self.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_lr=0.0003 agent.params.critic_lr=0.0003 num_unsup_steps=9000 num_train_steps=1000000 agent.params.batch_size=512 double_q_critic.params.hidden_dim=256 double_q_critic.params.hidden_depth=3 diag_gaussian_actor.params.hidden_dim=256 diag_gaussian_actor.params.hidden_depth=3 num_interact=5000 max_feedback=1000 reward_batch=10 reward_update=10 feed_type=1 num_meta_steps=10000
+python train_MRN_self.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_lr=0.0003 agent.params.critic_lr=0.0003 num_unsup_steps=9000 num_train_steps=1000000 agent.params.batch_size=512 double_q_critic.params.hidden_dim=256 double_q_critic.params.hidden_depth=3 diag_gaussian_actor.params.hidden_dim=256 diag_gaussian_actor.params.hidden_depth=3 num_interact=5000 max_feedback=1000 reward_batch=10 reward_update=10 feed_type=1 num_meta_steps=10000 self_frequency=1000
 ```
 
 #### PEBBLE
@@ -63,7 +63,7 @@ python train_PEBBLE.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_
 #### PEBBLE_self
 
 ```bash
-python train_PEBBLE_self.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_lr=0.0003 agent.params.critic_lr=0.0003 num_unsup_steps=9000 num_train_steps=1000000 agent.params.batch_size=512 double_q_critic.params.hidden_dim=256 double_q_critic.params.hidden_depth=3 diag_gaussian_actor.params.hidden_dim=256 diag_gaussian_actor.params.hidden_depth=3 num_interact=5000 max_feedback=1000 reward_batch=10 reward_update=10 feed_type=1
+python train_PEBBLE_self.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_lr=0.0003 agent.params.critic_lr=0.0003 num_unsup_steps=9000 num_train_steps=1000000 agent.params.batch_size=512 double_q_critic.params.hidden_dim=256 double_q_critic.params.hidden_depth=3 diag_gaussian_actor.params.hidden_dim=256 diag_gaussian_actor.params.hidden_depth=3 num_interact=5000 max_feedback=1000 reward_batch=10 reward_update=10 feed_type=1 self_frequency=1000
 ```
 
 #### SURF
@@ -74,7 +74,7 @@ python train_PEBBLE_semi_dataaug.py env=metaworld_door-open-v2 seed=12345 agent.
 #### SURF_self
 
 ```bash
-python train_PEBBLE_semi_dataaug_self.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_lr=0.0003 agent.params.critic_lr=0.0003 num_unsup_steps=9000 num_train_steps=1000000 agent.params.batch_size=512 double_q_critic.params.hidden_dim=256 double_q_critic.params.hidden_depth=3 diag_gaussian_actor.params.hidden_dim=256 diag_gaussian_actor.params.hidden_depth=3 num_interact=5000 max_feedback=1000 reward_batch=10 reward_update=20 feed_type=1 inv_label_ratio=10 threshold_u=0.99 mu=4
+python train_PEBBLE_semi_dataaug_self.py env=metaworld_door-open-v2 seed=12345 agent.params.actor_lr=0.0003 agent.params.critic_lr=0.0003 num_unsup_steps=9000 num_train_steps=1000000 agent.params.batch_size=512 double_q_critic.params.hidden_dim=256 double_q_critic.params.hidden_depth=3 diag_gaussian_actor.params.hidden_dim=256 diag_gaussian_actor.params.hidden_depth=3 num_interact=5000 max_feedback=1000 reward_batch=10 reward_update=20 feed_type=1 inv_label_ratio=10 threshold_u=0.99 mu=4 self_frequency=1000
 ```
 
 
@@ -82,7 +82,7 @@ python train_PEBBLE_semi_dataaug_self.py env=metaworld_door-open-v2 seed=12345 a
 ## Citation
 
 ```
-@inproceedings{liu2022metarewardnet,
+@inproceedings{hu2024slrlhf,
   title={SelfLearning-RLHF},
   author={Jiabin Hu and Xiaoyi Wei and Peng Zhai and Lihua Zhang},
 }

@@ -15,10 +15,6 @@
 
 """Cheetah Domain."""
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import collections
 
 from dm_control import mujoco
@@ -27,6 +23,8 @@ from dm_control.suite import base
 from dm_control.suite import common
 from dm_control.utils import containers
 from dm_control.utils import rewards
+
+import numpy as np
 
 
 # How long the simulation will run, in seconds.
@@ -78,7 +76,7 @@ class Cheetah(base.Task):
 
     physics.data.time = 0
     self._timeout_progress = 0
-    super(Cheetah, self).initialize_episode(physics)
+    super().initialize_episode(physics)
 
   def get_observation(self, physics):
     """Returns an observation of the state, ignoring horizontal position."""
@@ -86,12 +84,14 @@ class Cheetah(base.Task):
     # Ignores horizontal position to maintain translational invariance.
     obs['position'] = physics.data.qpos[1:].copy()
     obs['velocity'] = physics.velocity()
+    
     return obs
 
   def get_reward(self, physics):
     """Returns a reward to the agent."""
-    return rewards.tolerance(physics.speed(),
+    rewardt = rewards.tolerance(physics.speed(),
                              bounds=(_RUN_SPEED, float('inf')),
                              margin=_RUN_SPEED,
                              value_at_margin=0,
                              sigmoid='linear')
+    return [rewardt,rewardt]

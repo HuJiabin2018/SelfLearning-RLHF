@@ -51,6 +51,8 @@ seed: 1
 env: dog_stand
 gradient_update: 1
 
+self_frequency: 1000
+
 # hydra configuration
 hydra:
   name: ${env}

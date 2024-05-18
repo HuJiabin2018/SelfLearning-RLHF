@@ -71,7 +71,7 @@ class Workspace(object):
         # for self learning label
         self.total_feedback_self = 0
         self.labeled_feedback_self = 0
-        self.self_learning_steps = 1000
+        self.self_learning_steps = cfg.self_frequency
 
         # instantiating the reward model
         self.reward_model = RewardModelSemiDataAug(
