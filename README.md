@@ -22,7 +22,7 @@ mv /tmp/mjkey.txt ~/.mujoco/
 
 ```bash
 conda env create -f conda_env.yml
-conda activate mrn
+conda activate SlRlhf
 pip install -e .[docs,tests,extra]
 cd custom_dmcontrol
 pip install -e .
